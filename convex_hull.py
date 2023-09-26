@@ -66,6 +66,8 @@ class ConvexHullSolver(QObject):
 
 		t1 = time.time()
 		# TODO: SORT THE POINTS BY INCREASING X-VALUE
+		sorted_points = sorted(points, key=lambda x: x.x(), reverse=False)
+		
 		t2 = time.time()
 
 		t3 = time.time()
