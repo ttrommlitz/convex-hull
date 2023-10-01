@@ -95,8 +95,7 @@ class ConvexHullSolver(QObject):
 			curr_node = curr_node.next
 		
 		polygon.append(QLineF(curr_node.point, curr_node.next.point))
-
-		# TODO: REPLACE THE LINE ABOVE WITH A CALL TO YOUR DIVIDE-AND-CONQUER CONVEX HULL SOLVER
+		
 		t4 = time.time()
 
 		# when passing lines to the display, pass a list of QLineF objects.  Each QLineF
@@ -179,7 +178,7 @@ class ConvexHullSolver(QObject):
 			node2 = Node(points[1])
 			node3 = Node(points[2])
 				
-			if points[1].y() < points[2].y():
+			if self.calculate_slope(node1, node3) > self.calculate_slope(node1, node2):
 				self.connectNodes(node1, node3)
 				self.connectNodes(node3, node2)
 				self.connectNodes(node2, node1)
