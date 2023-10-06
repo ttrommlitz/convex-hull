@@ -79,7 +79,7 @@ class ConvexHullSolver(QObject):
 		assert( type(points) == list and type(points[0]) == QPointF )
 
 		t1 = time.time()
-		# TODO: SORT THE POINTS BY INCREASING X-VALUE
+		
 		sorted_points = sorted(points, key=lambda x: x.x(), reverse=False)
 
 		t2 = time.time()
@@ -103,12 +103,14 @@ class ConvexHullSolver(QObject):
 		self.showHull(polygon,RED)
 		self.showText('Time Elapsed (Convex Hull): {:3.3f} sec'.format(t4-t3))
 
+	# Calculate the slope between two points. Complexity is O(1), constant time
 	def calculate_slope(self, left_node: Node, right_node: Node) -> float:
 		rise = right_node.point.y() - left_node.point.y()
 		run = right_node.point.x() - left_node.point.x()
 
 		return rise / run
 	
+	# point two nodes to each other. Complexity is O(1), constant time
 	def connectNodes(self, prevNode: Node, nextNode: Node) -> None:
 		prevNode.next = nextNode
 		nextNode.prev = prevNode
